@@ -1,11 +1,14 @@
 FROM node:22-alpine AS frontend
 WORKDIR /app/web
+RUN npm config set registry https://registry.npmmirror.com
 COPY web/package.json web/package-lock.json ./
 RUN npm install --frozen-lockfile || npm install
 COPY web/ .
 RUN npm run build
 
-FROM golang:1.23-alpine AS builder
+FROM golang:1.25-alpine AS builder
+ENV GOPROXY=https://goproxy.cn,direct
+ENV GOTOOLCHAIN=auto
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
