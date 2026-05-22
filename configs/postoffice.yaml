@@ -1,0 +1,40 @@
+server:
+  hostname: mail.example.com
+  http_port: 8080
+
+smtp:
+  listen_addr: ":25"
+  submission_addr: ":587"
+  max_message_size: 26214400  # 25MB
+  max_recipients: 100
+
+imap:
+  listen_addr: ":993"
+
+database:
+  host: localhost
+  port: 5432
+  name: postoffice
+  user: postoffice
+  password: postoffice
+  ssl_mode: disable
+
+redis:
+  url: redis://localhost:6379
+
+storage:
+  endpoint: localhost:9000
+  access_key: minioadmin
+  secret_key: minioadmin
+  bucket: postoffice
+  use_ssl: false
+
+tls:
+  enabled: false
+  cert_file: ""
+  key_file: ""
+  acme_email: ""
+
+jwt:
+  secret: change-me-in-production
+  expire_hour: 72
